@@ -55,19 +55,16 @@ if st.sidebar.button("Predict"):
 
 
 st.sidebar.title("StockBot Assistant")
-
-# Initialize chat history
+ 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
-
-# Display previous messages
+ 
 chat_container = st.sidebar.container()
 with chat_container:
     for role, msg in st.session_state.chat_history:
         with st.chat_message(role):
             st.markdown(msg)
-
-# Input at the bottom of sidebar
+ 
 user_input = st.sidebar.chat_input("Ask anything about stocks...")
 
 if user_input:
