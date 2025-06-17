@@ -33,7 +33,7 @@ if st.sidebar.button("Predict"):
             st.error(f"Model loading or prediction failed: {str(e)}")
 
 
-st.sidebar.title("💬 StockBot Assistant")
+st.sidebar.title("StockBot Assistant")
 
 # Initialize chat history
 if "chat_history" not in st.session_state:
