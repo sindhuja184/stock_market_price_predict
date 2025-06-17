@@ -7,15 +7,27 @@ from chatbot.groq_model import chain
 st.title("Stock Market Price Prediction")
 
 
-
-ticker = st.sidebar.text_input("Enter Stock Ticker ", "MSFT")
+ticker = st.sidebar.radio(
+    "Select a ticker",
+    options = ['BAC', 'JNJ', 'MSFT', 'NVDA', 'TATAPOWER']
+)
 forecast_days = st.sidebar.slider("Days to Forecast", min_value=1, max_value=30, value=7)
 
 if st.sidebar.button("Predict"):
     st.write(f"## Forecasting for {ticker} for next {forecast_days} days")
 
     with st.spinner("Fetching and preprocessing data..."):
-        df = pd.read_csv('MSFT_data.csv')
+       
+        if ticker == 'BAC':
+            df = pd.read_csv('CSV/BAC_data.csv')
+        elif ticker == 'JNJ':
+            df = pd.read_csv('CSV/JNJ_data.csv')
+        elif ticker == 'MSFT':
+            df = pd.read_csv('CSV/MSFT_data.csv')
+        elif ticker == 'NVDA':
+            df = pd.read_csv('CSV/NVDA_data.csv')
+        else:
+            df = pd.read_csv('CSV/TATAPOWER_data.csv')
         df.columns = ['Price' if col == 'Date' else col for col in df.columns]
         data_preprocess(df, ticker, forecast_days)
         indicators(df, forecast_days)
@@ -26,7 +38,16 @@ if st.sidebar.button("Predict"):
 
     with st.spinner("Loading model and predicting..."):
         try:
-            model = load_model("my_model.keras")
+            if ticker == 'BAC':
+                model = load_model('models/model_BAC.keras')
+            elif ticker == 'JNJ':
+                model = load_model('models/model_JNJ.keras')
+            elif ticker == 'MSFT':
+                model = load_model('models/model_MSFT.keras')
+            elif ticker == 'NVDA':
+                model = load_model('models/model_NVDA.keras')
+            else:
+                model = load_model('models/model_TATAPOWER.keras')
             predict(X[int(len(X)*0.8):], y[int(len(y)*0.8):], model, forecast_days)
             st.success("Prediction complete!")
         except Exception as e:
