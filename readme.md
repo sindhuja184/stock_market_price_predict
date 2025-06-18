@@ -4,7 +4,7 @@ This project predicts future stock prices using LSTM (Long Short-Term Memory) ne
 
 ## Demo 
 
-Visit [here]{https://stockmarketpricepredict.streamlit.app/}
+Visit [here](https://stockmarketpricepredict.streamlit.app/)
 ## Features
 - Interactive UI with Streamlit for choosing tickers and forecast horizon
 
