@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 2. Run the Streamlit app
 ```bash
-streamlit run main.py
+streamlit run app.py
 ```
 ##  Model Overview
 
